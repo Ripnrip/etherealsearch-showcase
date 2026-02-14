@@ -267,10 +267,10 @@ export function SearchInterface() {
                 className="mt-6 space-y-4"
               >
                 {/* Stats */}
-                <div className="flex items-center gap-4 text-sm text-gray-500">
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="w-4 h-4" />
-                    {result.searchTime}s
+                <div className="flex items-center gap-4 text-sm text-slate-400">
+                  <span className="flex items-center gap-1.5 bg-emerald-500/10 px-3 py-1 rounded-full">
+                    <Clock className="w-4 h-4 text-emerald-400" />
+                    <span className="text-emerald-400 font-medium">{result.searchTime}s</span>
                   </span>
                   <span className="flex items-center gap-1.5">
                     <FileText className="w-4 h-4" />
@@ -284,10 +284,10 @@ export function SearchInterface() {
                     <Sparkles className="w-4 h-4 text-cyan-400" />
                     <span className="text-sm font-medium text-cyan-400">Answer</span>
                   </div>
-                  <div className="text-gray-200 leading-relaxed whitespace-pre-wrap text-base">
+                  <div className="text-white leading-relaxed whitespace-pre-wrap text-lg">
                     {result.answer.split("**").map((part, i) =>
                       i % 2 === 1 ? (
-                        <strong key={i} className="text-white font-bold text-lg">
+                        <strong key={i} className="text-cyan-300 font-bold text-xl">
                           {part}
                         </strong>
                       ) : (
@@ -299,7 +299,7 @@ export function SearchInterface() {
 
                 {/* Sources */}
                 <div className="space-y-2">
-                  <h4 className="text-sm font-medium text-gray-400">Sources</h4>
+                  <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wide">Sources</h4>
                   <div className="grid gap-2">
                     {result.sources.map((source, i) => (
                       <motion.div
@@ -307,24 +307,24 @@ export function SearchInterface() {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.1 }}
-                        className="flex items-center justify-between p-3 bg-white/5 border border-white/10 rounded-lg hover:border-white/20 transition-colors cursor-pointer group"
+                        className="flex items-center justify-between p-3 bg-white/5 border border-white/10 rounded-lg hover:border-cyan-500/30 transition-colors cursor-pointer group"
                       >
                         <div className="flex items-center gap-3">
                           <span className="text-lg">{typeIcons[source.type]}</span>
                           <div>
-                            <p className="text-sm text-white group-hover:text-cyan-400 transition-colors">
+                            <p className="text-sm text-white group-hover:text-cyan-400 transition-colors font-medium">
                               {source.title}
                             </p>
                             {source.page && (
-                              <p className="text-xs text-gray-500">Page {source.page}</p>
+                              <p className="text-xs text-slate-400">Page {source.page}</p>
                             )}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className={`text-sm font-medium ${typeColors[source.type]}`}>
+                          <span className={`text-sm font-bold ${typeColors[source.type]}`}>
                             {source.confidence}%
                           </span>
-                          <ExternalLink className="w-4 h-4 text-gray-600 group-hover:text-cyan-400 transition-colors" />
+                          <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-cyan-400 transition-colors" />
                         </div>
                       </motion.div>
                     ))}
