@@ -134,26 +134,8 @@ export function SearchInterface() {
   };
 
   return (
-    <div className="flex-1 flex flex-col">
-      {/* Minimal Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between bg-[#030712]/80 backdrop-blur-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center">
-            <Search className="w-4 h-4 text-white" />
-          </div>
-          <span className="text-lg font-semibold text-white">EtherealSearch</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-gray-500 hidden sm:block">Agentic RAG for Engineering</span>
-          <button className="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors">
-            Sign in
-          </button>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 pt-20 pb-8">
-        <div className="w-full max-w-3xl">
+    <div className="w-full">
+      <div className="w-full max-w-3xl mx-auto">
           {/* Search Box - THE HERO */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -375,7 +357,6 @@ export function SearchInterface() {
             </motion.div>
           )}
         </div>
-      </div>
     </div>
   );
 }
