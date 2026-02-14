@@ -34,9 +34,9 @@ export function Pricing() {
               className={tier.highlighted ? "md:-mt-4 md:mb-4" : ""}
             >
               <GlassCard
-                className={`h-full ${
+                className={`h-full relative ${
                   tier.highlighted
-                    ? "border-accent-sky/30 bg-gradient-to-b from-accent-sky/5 to-transparent"
+                    ? "border-accent-sky/30 bg-gradient-to-b from-accent-sky/5 to-transparent border-beam"
                     : ""
                 }`}
               >

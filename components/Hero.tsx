@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight, Play, Building2, Users, Zap } from "lucide-react";
 import { VectorBackground } from "./VectorBackground";
 
 export function Hero() {
@@ -15,16 +15,14 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Badge */}
+          {/* Social Proof Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8"
+            className="social-proof-badge mb-8"
             animate={{ scale: [1, 1.02, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <Sparkles className="w-4 h-4 text-accent-sky" />
-            <span className="text-sm text-gray-300">
-              Powered by GLM-4.6V Vision Intelligence
-            </span>
+            <Building2 className="w-4 h-4" />
+            <span>Trusted by 500+ Engineering Teams Worldwide</span>
           </motion.div>
 
           {/* Main headline */}
@@ -38,7 +36,7 @@ export function Hero() {
           <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-12">
             World-class vision analysis meets intelligent search. Analyze diagrams,
             blueprints, and technical documentation with AI that truly{" "}
-            <span className="text-accent-sky">understands</span> engineering.
+            <span className="text-[var(--ethereal-cyan)]">understands</span> engineering.
           </p>
 
           {/* CTA Buttons */}
@@ -61,10 +59,11 @@ export function Hero() {
             </motion.button>
 
             <motion.button
-              className="px-8 py-4 glass rounded-xl font-semibold text-white hover:bg-white/10 transition-colors"
+              className="px-8 py-4 glass rounded-xl font-semibold text-white hover:bg-white/10 transition-colors flex items-center gap-2"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
+              <Play className="w-5 h-5" />
               Watch Demo
             </motion.button>
           </div>
@@ -77,16 +76,23 @@ export function Hero() {
             transition={{ delay: 0.4, duration: 0.6 }}
           >
             {[
-              { value: "99.7%", label: "Accuracy Rate" },
-              { value: "2.4M+", label: "Diagrams Processed" },
-              { value: "<500ms", label: "Response Time" },
+              { value: "99.7%", label: "Accuracy Rate", icon: Zap },
+              { value: "2.4M+", label: "Diagrams Processed", icon: Building2 },
+              { value: "<500ms", label: "Response Time", icon: Users },
             ].map((stat, i) => (
-              <div key={i} className="text-center">
+              <motion.div
+                key={i}
+                className="text-center p-4 glass rounded-xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
+              >
+                <stat.icon className="w-6 h-6 mx-auto mb-2 text-[var(--ethereal-cyan)]" />
                 <div className="text-3xl md:text-4xl font-bold gradient-text">
                   {stat.value}
                 </div>
                 <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </motion.div>

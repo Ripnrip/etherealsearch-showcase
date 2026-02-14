@@ -1,8 +1,10 @@
 export const suggestedPrompts = [
+  "What is the design wind speed for Austin commercial buildings?",
+  "Show me all projects by John Smith, PE 12345",
+  "Timeline of Downtown Office Building project changes",
   "Find all hydraulic system diagrams with pressure ratings above 2000 PSI",
   "Compare the electrical schematics between Model A and Model B",
   "What safety protocols apply to the cooling system maintenance?",
-  "Extract specifications from blueprint REV-2024-03",
 ];
 
 export interface DemoPhase {
