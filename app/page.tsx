@@ -1,7 +1,9 @@
 import { Hero } from "@/components/Hero";
-import { SearchInterface } from "@/components/SearchInterface";
 import { FeatureCards } from "@/components/FeatureCards";
 import { TechMarquee } from "@/components/TechMarquee";
+import { UseCases } from "@/components/UseCases";
+import { AgenticDemo } from "@/components/AgenticDemo";
+import { Pricing } from "@/components/Pricing";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -13,23 +15,17 @@ export default function Home() {
       {/* Tech Marquee - Scrolling technologies */}
       <TechMarquee />
 
-      {/* Search Interface - Interactive demo */}
-      <section className="py-24 relative">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Try it <span className="gradient-text">now</span>
-            </h2>
-            <p className="text-gray-400 text-lg">
-              Experience the power of agentic search with your engineering queries
-            </p>
-          </div>
-          <SearchInterface />
-        </div>
-      </section>
+      {/* Use Cases - Scrolling industry applications */}
+      <UseCases />
 
-      {/* Features Section - 6 cards */}
+      {/* Features Section - 6 feature cards */}
       <FeatureCards />
+
+      {/* Agentic Demo - Interactive 4-phase demonstration */}
+      <AgenticDemo />
+
+      {/* Pricing Section - 3 pricing tiers */}
+      <Pricing />
 
       {/* Footer */}
       <Footer />
