@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethereal V0 Apps - AI-Powered Engineering Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, #030712 0%, #0c1222 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #1e3a8a, #7c3aed);
+        }
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 40px;
+            padding: 60px 20px;
+        }
+        .app-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 24px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
+        }
+        .app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .app-header {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .app-info h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        .app-info p {
+            opacity: 0.8;
+            font-size: 1rem;
+        }
+        .app-content {
+            padding: 30px;
+        }
+        .app-content img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+        }
+        .app-content video {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+        .metric-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+        .tech-badge {
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .app-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.4);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        /* Variant Colors */
+        .variant-explorer .app-icon { background: linear-gradient(135deg, #10b981, #06b6d4); }
+        .variant-eye .app-icon { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+        .variant-insight .app-icon { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+        .variant-etherealsearch .app-icon { background: linear-gradient(135deg, #38bdf8, #a78bfa); }
+        .variant-explorer .metric-value { color: #10b981; }
+        .variant-eye .metric-value { color: #f59e0b; }
+        .variant-insight .metric-value { color: #8b5cf6; }
+        .variant-etherealsearch .metric-value { color: #38bdf8; }
+        .variant-explorer .tech-badge { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .variant-eye .tech-badge { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+        .variant-insight .tech-badge { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+        .variant-etherealsearch .tech-badge { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Ethereal V0 Apps</h1>
+            <p class="subtitle">Four revolutionary AI-powered applications for engineering teams</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="app-grid">
+            <!-- v0 Explorer -->
+            <div class="app-card variant-explorer">
+                <div class="app-header">
+                    <div class="app-icon">🌌</div>
+                    <div class="app-info">
+                        <h2>v0 Explorer</h2>
+                        <p>Agentic RAG Smart Search for Engineering</p>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <img src="v0-explorer-hero.png" alt="v0 Explorer Interface">
+                    <video autoplay muted loop playsinline>
+                        <source src="v0-explorer-showcase.mp4" type="video/mp4">
+                    </video>
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">99.2%</div>
+                            <div class="metric-label">OCR Accuracy</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">50+</div>
+                            <div class="metric-label">File Types</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">247</div>
+                            <div class="metric-value">Active Users</div>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Next.js</span>
+                        <span class="tech-badge">v0.dev</span>
+                        <span class="tech-badge">Vision AI</span>
+                        <span class="tech-badge">Vector DB</span>
+                    </div>
+                    <p>Multi-modal search across text, images, and diagrams for technical documentation.</p>
+                    <a href="https://v0-ethereal-explorer.vercel.app" target="_blank" class="app-link">
+                        View Live →
+                    </a>
+                </div>
+            </div>
+
+            <!-- v0 Eye -->
+            <div class="app-card variant-eye">
+                <div class="app-header">
+                    <div class="app-icon">👁️</div>
+                    <div class="app-info">
+                        <h2>v0 Eye</h2>
+                        <p>AI Document Intelligence Platform</p>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <img src="ethereal-v0-login-2026-02-14.png" alt="v0 Eye Dashboard">
+                    <video autoplay muted loop playsinline>
+                        <source src="ethereal-v0-login-page-video-2026-02-14.webm" type="video/webm">
+                    </video>
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">+12%</div>
+                            <div class="metric-label">Docs Processed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">+23%</div>
+                            <div class="metric-label">Queries Today</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">+8%</div>
+                            <div class="metric-label">Vision Analysis</div>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Computer Vision</span>
+                        <span class="tech-badge">GLM-4V</span>
+                        <span class="tech-badge">URL Enrichment</span>
+                    </div>
+                    <p>Vision analysis and URL enrichment for comprehensive document understanding.</p>
+                    <a href="https://v0-ethereal-eye.vercel.app" target="_blank" class="app-link">
+                        View Live →
+                    </a>
+                </div>
+            </div>
+
+            <!-- v0 Insight -->
+            <div class="app-card variant-insight">
+                <div class="app-header">
+                    <div class="app-icon">📊</div>
+                    <div class="app-info">
+                        <h2>v0 Insight</h2>
+                        <p>Advanced Analytics Dashboard</p>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <img src="ethereal-insight-v0-login-page-2026-02-14.png" alt="v0 Insight Analytics">
+                    <video autoplay muted loop playsinline>
+                        <source src="ethereal-insight-v0-login-recording.webm" type="video/webm">
+                    </video>
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">247</div>
+                            <div class="metric-label">Docs Indexed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">52.4k</div>
+                            <div class="metric-label">Vector Chunks</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">1,832</div>
+                            <div class="metric-label">Vision Analysis</div>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Analytics</span>
+                        <span class="tech-badge">Dashboard</span>
+                        <span class="tech-badge">RAG Pipeline</span>
+                    </div>
+                    <p>Real-time monitoring of document processing pipelines with comprehensive analytics.</p>
+                    <a href="https://v0-ethereal-insight.vercel.app" target="_blank" class="app-link">
+                        View Live →
+                    </a>
+                </div>
+            </div>
+
+            <!-- EtherealSearch -->
+            <div class="app-card variant-etherealsearch">
+                <div class="app-header">
+                    <div class="app-icon">🔍</div>
+                    <div class="app-info">
+                        <h2>EtherealSearch</h2>
+                        <p>Original Interactive Showcase</p>
+                    </div>
+                </div>
+                <div class="app-content">
+                    <img src="01-hero.png" alt="EtherealSearch Hero">
+                    <video autoplay muted loop playsinline>
+                        <source src="etherealsearch-demo.webm" type="video/webm">
+                    </video>
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">99</div>
+                            <div class="metric-label">Lighthouse</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">650ms</div>
+                            <div class="metric-label">LCP</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">0.05s</div>
+                            <div class="metric-label">CLS</div>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Next.js</span>
+                        <span class="tech-badge">GLM-4.6V</span>
+                        <span class="tech-badge">Vector DB</span>
+                        <span class="tech-badge">MCP</span>
+                    </div>
+                    <p>The foundation platform with interactive 4-phase agentic RAG demonstration.</p>
+                    <a href="https://etherealsearch-showcase.vercel.app" target="_blank" class="app-link">
+                        View Live →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            Built with Next.js, Tailwind CSS, Framer Motion • Deployed on Vercel
+        </div>
+    </footer>
+</body>
+</html>
