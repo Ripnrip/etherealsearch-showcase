@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EtherealDimension - Vercel Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #030712 0%, #0c1222 100%);
+            color: #fff;
+            padding: 20px;
+        }
+        .container { max-width: 1600px; margin: 0 auto; }
+        header { text-align: center; padding: 30px 0 40px; }
+        .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .logo-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-text {
+            font-size: 26px; font-weight: 700;
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        h1 { font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+        .subtitle { font-size: 16px; color: #64748b; }
+
+        .site-section { margin-bottom: 50px; }
+        .site-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px 16px 0 0;
+        }
+        .site-title { display: flex; align-items: center; gap: 12px; }
+        .site-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .site-name { font-size: 20px; font-weight: 600; }
+        .site-desc { font-size: 14px; color: #94a3b8; margin-top: 4px; }
+        .site-link {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .site-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(56,189,248,0.3);
+        }
+        .site-content {
+            border: 1px solid rgba(255,255,255,0.1);
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+            overflow: hidden;
+        }
+        .main-screenshot { width: 100%; display: block; }
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .screenshots-grid img {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+            transition: filter 0.2s;
+        }
+        .screenshots-grid img:hover { filter: brightness(1.1); }
+
+        .site-1 .site-icon { background: linear-gradient(135deg, #38bdf8, #a78bfa); }
+        .site-2 .site-icon { background: linear-gradient(135deg, #10b981, #06b6d4); }
+        .site-3 .site-icon { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+        .site-4 .site-icon { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+
+        .video-wrapper { padding: 20px; background: rgba(0,0,0,0.3); }
+        .video-wrapper video { width: 100%; border-radius: 12px; background: #000; }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 20px;
+        }
+        .footer-text { font-size: 14px; color: #475569; }
+
+        @media (max-width: 1024px) { .screenshots-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 640px) {
+            .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
+            h1 { font-size: 28px; }
+            .site-header { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <span class="logo-text">EtherealDimension</span>
+            </div>
+            <h1>4 Vercel Deployments</h1>
+            <p class="subtitle">AI-powered platforms built with Next.js and modern web technologies</p>
+        </header>
+
+        <!-- EtherealSearch -->
+        <section class="site-section site-1">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">🔍</div>
+                    <div>
+                        <div class="site-name">EtherealSearch</div>
+                        <div class="site-desc">Agentic RAG for Engineering - AI-powered search for technical documentation, diagrams, and blueprints</div>
+                    </div>
+                </div>
+                <a href="https://etherealsearch-showcase.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="01-hero.png" alt="EtherealSearch Hero" class="main-screenshot">
+                <div class="screenshots-grid">
+                    <img src="01-hero.png" alt="Hero">
+                    <img src="02-features.png" alt="Features">
+                    <img src="03-demo.png" alt="Demo">
+                    <img src="04-pricing.png" alt="Pricing">
+                    <img src="05-footer.png" alt="Footer">
+                </div>
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="etherealsearch-demo.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- TracePass UI -->
+        <section class="site-section site-2">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">🔗</div>
+                    <div>
+                        <div class="site-name">TracePass</div>
+                        <div class="site-desc">Supply Chain Traceability Platform - Track products from source to consumer with blockchain verification</div>
+                    </div>
+                </div>
+                <a href="https://tracepass-ui.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="tracepass/hero.png" alt="TracePass UI" class="main-screenshot">
+            </div>
+        </section>
+
+        <!-- TracePass Codex -->
+        <section class="site-section site-3">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">📊</div>
+                    <div>
+                        <div class="site-name">TracePass Codex Control Tower</div>
+                        <div class="site-desc">Command center for supply chain monitoring, analytics, and real-time tracking</div>
+                    </div>
+                </div>
+                <a href="https://outlook-codex.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="outlook-codex/hero.png" alt="TracePass Codex" class="main-screenshot">
+            </div>
+        </section>
+
+        <!-- v0 Ethereal Explorer -->
+        <section class="site-section site-3">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">🌌</div>
+                    <div>
+                        <div class="site-name">v0 Ethereal Explorer</div>
+                        <div class="site-desc">Building v0 interface for Ethereal Dimension - AI-powered exploration platform</div>
+                    </div>
+                </div>
+                <a href="https://v0-ethereal-explorer.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="v0-explorer-hero.png" alt="v0 Ethereal Explorer" class="main-screenshot">
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="v0-explorer-showcase.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- v0 Ethereal Dimension -->
+        <section class="site-section site-1">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">🔮</div>
+                    <div>
+                        <div class="site-name">v0 Ethereal Dimension</div>
+                        <div class="site-desc">Next-gen v0 development platform - Revolutionary AI-powered interfaces</div>
+                    </div>
+                </div>
+                <a href="https://v0-ethereal-p64kx9bek-gsinghdevs-projects.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="ethereal-v0-login-2026-02-14.png" alt="v0 Ethereal Dimension" class="main-screenshot">
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="ethereal-v0-login-page-video-2026-02-14.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- v0 Ethereal Insight -->
+        <section class="site-section site-2">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">📊</div>
+                    <div>
+                        <div class="site-name">v0 Ethereal Insight</div>
+                        <div class="site-desc">AI-powered insights dashboard - Advanced analytics and monitoring</div>
+                    </div>
+                </div>
+                <a href="https://v0-ethereal-insight-4x8yc17sa-gsinghdevs-projects.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="ethereal-insight-v0-login-page-2026-02-14.png" alt="v0 Ethereal Insight" class="main-screenshot">
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="ethereal-insight-v0-login-recording.webm" type="video/webm">
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- TracePass Mocks -->
+        <section class="site-section site-4">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">🎯</div>
+                    <div>
+                        <div class="site-name">TracePass Mocks</div>
+                        <div class="site-desc">Design prototypes and mockups for the TracePass platform interface</div>
+                    </div>
+                </div>
+                <a href="https://outlook-gemini.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="outlook-gemini/hero.png" alt="TracePass Mocks" class="main-screenshot">
+            </div>
+        </section>
+
+        <footer>
+            <p class="footer-text">EtherealDimension • Built with Next.js, Tailwind CSS, Framer Motion • Deployed on Vercel</p>
+        </footer>
+    </div>
+</body>
+</html>
