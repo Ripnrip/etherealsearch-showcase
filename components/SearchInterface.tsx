@@ -279,19 +279,21 @@ export function SearchInterface() {
                 </div>
 
                 {/* Answer */}
-                <div className="bg-gradient-to-br from-cyan-500/5 to-violet-500/5 border border-cyan-500/20 rounded-xl p-6">
-                  <div className="prose prose-invert prose-sm max-w-none">
-                    <div className="text-gray-300 leading-relaxed whitespace-pre-wrap">
-                      {result.answer.split("**").map((part, i) =>
-                        i % 2 === 1 ? (
-                          <strong key={i} className="text-white font-semibold">
-                            {part}
-                          </strong>
-                        ) : (
-                          <span key={i}>{part}</span>
-                        )
-                      )}
-                    </div>
+                <div className="bg-gradient-to-br from-cyan-500/10 to-violet-500/10 border border-cyan-500/30 rounded-xl p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sparkles className="w-4 h-4 text-cyan-400" />
+                    <span className="text-sm font-medium text-cyan-400">Answer</span>
+                  </div>
+                  <div className="text-gray-200 leading-relaxed whitespace-pre-wrap text-base">
+                    {result.answer.split("**").map((part, i) =>
+                      i % 2 === 1 ? (
+                        <strong key={i} className="text-white font-bold text-lg">
+                          {part}
+                        </strong>
+                      ) : (
+                        <span key={i}>{part}</span>
+                      )
+                    )}
                   </div>
                 </div>
 
