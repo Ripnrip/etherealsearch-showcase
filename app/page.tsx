@@ -39,7 +39,7 @@ export default function Home() {
               Watch all 4 V0 app variants come to life in a cinematic journey through the future of AI development
             </p>
             <motion.a
-              href="/showcase"
+              href="/v0-apps"
               className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xl font-bold rounded-2xl shadow-2xl group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
