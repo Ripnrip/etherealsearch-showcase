@@ -61,13 +61,21 @@ export default function V0AppsPage() {
                 </div>
                 <p className="text-gray-300 mb-4">{app.description}</p>
                 <div className="aspect-video bg-black/20 rounded-lg overflow-hidden mb-4">
-                  <Image
-                    src={app.screenshot}
-                    alt={app.name}
-                    width={600}
-                    height={400}
-                    className="w-full h-full object-cover"
-                  />
+                  {app.screenshot.endsWith('.mp4') ? (
+                    <video
+                      src={app.screenshot}
+                      className="w-full h-full object-cover"
+                      controls
+                    />
+                  ) : (
+                    <Image
+                      src={app.screenshot}
+                      alt={app.name}
+                      width={600}
+                      height={400}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
                 <a
                   href={app.url}
