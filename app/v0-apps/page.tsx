@@ -7,7 +7,7 @@ const apps = [
     url: "https://v0-ethereal-explorer.vercel.app",
     icon: "🌌",
     color: "from-emerald-400 to-cyan-400",
-    screenshot: "/screenshots/v0-explorer-hero.png"
+    screenshot: "/v0-showcase/v0-explorer-showcase.mp4"
   },
   {
     name: "v0 Eye",
@@ -15,7 +15,7 @@ const apps = [
     url: "https://v0-ethereal-eye.vercel.app",
     icon: "👁️",
     color: "from-yellow-400 to-red-400",
-    screenshot: "/screenshots/ethereal-v0-login-2026-02-14.png"
+    screenshot: "/v0-showcase/ethereal-v0-login-2026-02-14.png"
   },
   {
     name: "v0 Insight",
@@ -23,7 +23,7 @@ const apps = [
     url: "https://v0-ethereal-insight.vercel.app",
     icon: "📊",
     color: "from-violet-400 to-pink-400",
-    screenshot: "/screenshots/ethereal-insight-v0-login-page-2026-02-14.png"
+    screenshot: "/v0-showcase/ethereal-insight-v0-login-page-2026-02-14.png"
   },
   {
     name: "EtherealSearch",
@@ -31,7 +31,7 @@ const apps = [
     url: "https://etherealsearch-showcase.vercel.app",
     icon: "🔍",
     color: "from-blue-400 to-purple-400",
-    screenshot: "/screenshots/01-hero.png"
+    screenshot: "/v0-showcase/01-hero.png"
   }
 ];
 
