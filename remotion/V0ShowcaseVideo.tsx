@@ -7,18 +7,16 @@ import {
   spring,
 } from 'remotion';
 
-interface V0ShowcaseVideoProps {
-  appName: string;
-  appUrl: string;
-  screenshotPath: string;
-  gradient: string;
-}
-
-export const V0ShowcaseVideo: React.FC<V0ShowcaseVideoProps> = ({
+export const V0ShowcaseVideo = ({
   appName,
   appUrl,
   screenshotPath,
   gradient,
+}: {
+  appName: string;
+  appUrl: string;
+  screenshotPath: string;
+  gradient: string;
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
