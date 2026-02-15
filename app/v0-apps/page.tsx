@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const apps = [
   {
     name: "v0 Explorer",
@@ -63,16 +61,14 @@ export default function V0AppsPage() {
                 <div className="aspect-video bg-black/20 rounded-lg overflow-hidden mb-4">
                   {app.screenshot.endsWith('.mp4') ? (
                     <video
-                      src={app.screenshot}
+                      src={`https://etherealsearch-showcase.vercel.app${app.screenshot}`}
                       className="w-full h-full object-cover"
                       controls
                     />
                   ) : (
-                    <Image
-                      src={app.screenshot}
+                    <img
+                      src={`https://etherealsearch-showcase.vercel.app${app.screenshot}`}
                       alt={app.name}
-                      width={600}
-                      height={400}
                       className="w-full h-full object-cover"
                     />
                   )}
