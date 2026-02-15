@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EtherealDimension - Vercel Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #030712 0%, #0c1222 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+            transition: background 0.5s ease;
+        }
+        body.light-mode {
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+        }
+        .container { max-width: 1600px; margin: 0 auto; }
+        header { text-align: center; padding: 50px 0 60px; }
+        .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .logo-icon {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .logo-text {
+            font-size: 26px; font-weight: 700;
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .light-mode .logo-text {
+            background: linear-gradient(135deg, #0ea5e9, #7e22ce);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        h1 { font-size: 42px; font-weight: 800; margin-bottom: 8px; }
+        .subtitle { font-size: 18px; color: #94a3b8; }
+        .light-mode .subtitle { color: #64748b; }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 16px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .theme-toggle:hover { background: rgba(255,255,255,0.2); }
+        .light-mode .theme-toggle { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); }
+
+        .site-section { margin-bottom: 50px; opacity: 0; transform: translateY(30px); animation: fadeInUp 0.6s ease forwards; }
+        .site-section:nth-child(1) { animation-delay: 0.1s; }
+        .site-section:nth-child(2) { animation-delay: 0.2s; }
+        .site-section:nth-child(3) { animation-delay: 0.3s; }
+        .site-section:nth-child(4) { animation-delay: 0.4s; }
+        .site-section:nth-child(5) { animation-delay: 0.5s; }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .site-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 20px 24px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px 16px 0 0;
+            transition: all 0.3s ease;
+        }
+        .site-header:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .site-title { display: flex; align-items: center; gap: 12px; }
+        .site-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        .site-icon:hover { transform: scale(1.1); }
+        .site-name { font-size: 22px; font-weight: 700; }
+        .site-desc { font-size: 14px; color: #94a3b8; margin-top: 4px; }
+        .light-mode .site-desc { color: #64748b; }
+        .tech-stack {
+            display: flex; gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .tech-badge {
+            padding: 4px 10px;
+            background: rgba(56,189,248,0.1);
+            color: #38bdf8;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .light-mode .tech-badge {
+            background: rgba(14,165,233,0.1);
+            color: #0ea5e9;
+        }
+        .site-link {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #38bdf8, #a78bfa);
+            border-radius: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .site-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(56,189,248,0.4);
+        }
+        .site-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(56,189,248,0.3);
+        }
+        .site-content {
+            border: 1px solid rgba(255,255,255,0.1);
+            border-top: none;
+            border-radius: 0 0 16px 16px;
+            overflow: hidden;
+        }
+        .main-screenshot { width: 100%; display: block; }
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .screenshots-grid img {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+            transition: filter 0.2s;
+        }
+        .screenshots-grid img:hover { filter: brightness(1.1); }
+
+        .site-1 .site-icon { background: linear-gradient(135deg, #38bdf8, #a78bfa); }
+        .site-2 .site-icon { background: linear-gradient(135deg, #10b981, #06b6d4); }
+        .site-3 .site-icon { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+        .site-4 .site-icon { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+
+        .video-wrapper { padding: 20px; background: rgba(0,0,0,0.3); position: relative; }
+        .video-wrapper video { width: 100%; border-radius: 12px; background: #000; transition: transform 0.3s ease; }
+        .video-wrapper video:hover { transform: scale(1.02); }
+        .video-controls {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .video-wrapper:hover .video-controls { opacity: 1; }
+        .play-pause {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        .play-pause:hover { background: rgba(255,255,255,0.2); }
+        .video-status { font-size: 12px; color: #94a3b8; }
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .metric {
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #38bdf8;
+            display: block;
+        }
+        .metric-label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .light-mode .metric-value { color: #0ea5e9; }
+        .light-mode .metric-label { color: #64748b; }
+
+        .variant-nav {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .variant-nav a {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            text-decoration: none;
+            color: #94a3b8;
+            font-size: 14px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .variant-nav a:hover {
+            background: rgba(56,189,248,0.1);
+            border-color: rgba(56,189,248,0.3);
+            color: #38bdf8;
+            transform: translateY(-2px);
+        }
+
+        .light-mode .variant-nav a {
+            background: rgba(0,0,0,0.05);
+            border-color: rgba(0,0,0,0.1);
+            color: #64748b;
+        }
+
+        .light-mode .variant-nav a:hover {
+            background: rgba(14,165,233,0.1);
+            border-color: rgba(14,165,233,0.3);
+            color: #0ea5e9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 20px;
+        }
+        .footer-text { font-size: 14px; color: #475569; }
+
+        @media (max-width: 1024px) { .screenshots-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 640px) {
+            .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
+            h1 { font-size: 28px; }
+            .site-header { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <span class="logo-text">EtherealDimension</span>
+            </div>
+            <h1>4 V0 App Variants</h1>
+            <p class="subtitle">EtherealSearch and v0.dev alternatives - AI-powered platforms deployed on Vercel</p>
+
+            <div class="variant-nav" style="margin-top: 30px; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                <a href="#etherealsearch" style="padding: 8px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; color: #94a3b8; font-size: 14px; transition: all 0.3s;">EtherealSearch</a>
+                <a href="#v0-explorer" style="padding: 8px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; color: #94a3b8; font-size: 14px; transition: all 0.3s;">v0 Explorer</a>
+                <a href="#v0-eye" style="padding: 8px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; color: #94a3b8; font-size: 14px; transition: all 0.3s;">v0 Eye</a>
+                <a href="#v0-insight" style="padding: 8px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; text-decoration: none; color: #94a3b8; font-size: 14px; transition: all 0.3s;">v0 Insight</a>
+            </div>
+        </header>
+
+        <!-- EtherealSearch -->
+        <section id="etherealsearch" class="site-section site-1">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">🔍</div>
+                    <div>
+                        <div class="site-name">EtherealSearch</div>
+                        <div class="site-desc">Agentic RAG for Engineering - AI-powered search for technical documentation, diagrams, and blueprints</div>
+                    </div>
+                </div>
+                <a href="https://etherealsearch-showcase.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="01-hero.png" alt="EtherealSearch Hero" class="main-screenshot">
+                <div class="screenshots-grid">
+                    <img src="01-hero.png" alt="Hero">
+                    <img src="02-features.png" alt="Features">
+                    <img src="03-demo.png" alt="Demo">
+                    <img src="04-pricing.png" alt="Pricing">
+                    <img src="05-footer.png" alt="Footer">
+                </div>
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="etherealsearch-demo.webm" type="video/webm">
+                    </video>
+                    <div class="video-controls">
+                        <button class="play-pause" data-target="video1">⏸️</button>
+                        <span class="video-status">Playing</span>
+                    </div>
+                </div>
+                <div class="performance-metrics">
+                    <div class="metric">
+                        <span class="metric-value">99</span>
+                        <span class="metric-label">Lighthouse</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">650ms</span>
+                        <span class="metric-label">LCP</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">45ms</span>
+                        <span class="metric-label">FID</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">0.05s</span>
+                        <span class="metric-label">CLS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TracePass UI -->
+        <section class="site-section site-2">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">🔗</div>
+                    <div>
+                        <div class="site-name">TracePass</div>
+                        <div class="site-desc">Supply Chain Traceability Platform - Track products from source to consumer with blockchain verification</div>
+                    </div>
+                </div>
+                <a href="https://tracepass-ui.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="tracepass/hero.png" alt="TracePass UI" class="main-screenshot">
+                <div class="performance-metrics">
+                    <div class="metric">
+                        <span class="metric-value">98</span>
+                        <span class="metric-label">Lighthouse</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">780ms</span>
+                        <span class="metric-label">LCP</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">38ms</span>
+                        <span class="metric-label">FID</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">0.03s</span>
+                        <span class="metric-label">CLS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TracePass Codex -->
+        <section class="site-section site-3">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">📊</div>
+                    <div>
+                        <div class="site-name">TracePass Codex Control Tower</div>
+                        <div class="site-desc">Command center for supply chain monitoring, analytics, and real-time tracking</div>
+                    </div>
+                </div>
+                <a href="https://outlook-codex.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="outlook-codex/hero.png" alt="TracePass Codex" class="main-screenshot">
+            </div>
+        </section>
+
+        <!-- v0 Ethereal Explorer -->
+        <section id="v0-explorer" class="site-section site-3">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">🌌</div>
+                    <div>
+                        <div class="site-name">v0 Ethereal Explorer</div>
+                        <div class="site-desc">Building v0 interface for Ethereal Dimension - AI-powered exploration platform</div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Next.js</span>
+                            <span class="tech-badge">v0.dev</span>
+                            <span class="tech-badge">Explorer</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://v0-ethereal-explorer.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="v0-explorer-hero.png" alt="v0 Ethereal Explorer" class="main-screenshot">
+                <div class="screenshots-grid">
+                    <img src="v0-explorer-hero.png" alt="Explorer Hero">
+                </div>
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="v0-explorer-showcase.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-controls">
+                        <button class="play-pause" data-target="video2">⏸️</button>
+                        <span class="video-status">Playing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- v0 Ethereal Eye -->
+        <section id="v0-eye" class="site-section site-1">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">👁️</div>
+                    <div>
+                        <div class="site-name">v0 Ethereal Eye</div>
+                        <div class="site-desc">AI-powered vision interface - Advanced computer vision and image analysis</div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Computer Vision</span>
+                            <span class="tech-badge">AI</span>
+                            <span class="tech-badge">v0.dev</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://v0-ethereal-eye.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="ethereal-v0-login-2026-02-14.png" alt="v0 Ethereal Eye" class="main-screenshot">
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="ethereal-v0-login-page-video-2026-02-14.webm" type="video/webm">
+                    </video>
+                    <div class="video-controls">
+                        <button class="play-pause" data-target="video3">⏸️</button>
+                        <span class="video-status">Playing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- v0 Ethereal Insight -->
+        <section id="v0-insight" class="site-section site-2">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">📊</div>
+                    <div>
+                        <div class="site-name">v0 Ethereal Insight</div>
+                        <div class="site-desc">AI-powered insights dashboard - Advanced analytics and monitoring</div>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Analytics</span>
+                            <span class="tech-badge">Dashboard</span>
+                            <span class="tech-badge">v0.dev</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://v0-ethereal-insight.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="ethereal-insight-v0-login-page-2026-02-14.png" alt="v0 Ethereal Insight" class="main-screenshot">
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline>
+                        <source src="ethereal-insight-v0-login-recording.webm" type="video/webm">
+                    </video>
+                    <div class="video-controls">
+                        <button class="play-pause" data-target="video4">⏸️</button>
+                        <span class="video-status">Playing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TracePass Mocks -->
+        <section class="site-section site-4">
+            <div class="site-header">
+                <div class="site-title">
+                    <div class="site-icon">🎯</div>
+                    <div>
+                        <div class="site-name">TracePass Mocks</div>
+                        <div class="site-desc">Design prototypes and mockups for the TracePass platform interface</div>
+                    </div>
+                </div>
+                <a href="https://outlook-gemini.vercel.app" target="_blank" class="site-link">View Live →</a>
+            </div>
+            <div class="site-content">
+                <img src="outlook-gemini/hero.png" alt="TracePass Mocks" class="main-screenshot">
+            </div>
+        </section>
+
+        <footer>
+            <p class="footer-text">EtherealDimension • Built with Next.js, Tailwind CSS, Framer Motion • Deployed on Vercel</p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.createElement('button');
+        themeToggle.className = 'theme-toggle';
+        themeToggle.innerHTML = '🌙';
+        themeToggle.title = 'Toggle theme';
+        document.body.appendChild(themeToggle);
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeToggle.innerHTML = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            themeToggle.innerHTML = '☀️';
+        }
+
+        // Enhanced video controls
+        document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+            const video = wrapper.querySelector('video');
+            const button = wrapper.querySelector('.play-pause');
+            const status = wrapper.querySelector('.video-status');
+
+            // Set initial state
+            video.addEventListener('loadeddata', () => {
+                button.textContent = '▶️';
+                status.textContent = 'Ready to play';
+            });
+
+            video.addEventListener('error', () => {
+                button.textContent = '❌';
+                status.textContent = 'Video unavailable';
+                button.disabled = true;
+            });
+
+            video.addEventListener('ended', () => {
+                button.textContent = '🔁';
+                status.textContent = 'Replay';
+            });
+        });
+
+        document.querySelectorAll('.play-pause').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const videoWrapper = button.closest('.video-wrapper');
+                const video = videoWrapper.querySelector('video');
+                const status = button.nextElementSibling;
+
+                if (video.paused && !button.disabled) {
+                    // Pause all other videos
+                    document.querySelectorAll('video').forEach(v => {
+                        if (v !== video && !v.paused) {
+                            v.pause();
+                            const otherButton = v.closest('.video-wrapper').querySelector('.play-pause');
+                            const otherStatus = v.closest('.video-wrapper').querySelector('.video-status');
+                            otherButton.textContent = '▶️';
+                            otherStatus.textContent = 'Paused';
+                        }
+                    });
+
+                    // Try to play the clicked video
+                    video.play().then(() => {
+                        button.textContent = '⏸️';
+                        status.textContent = 'Playing';
+                    }).catch(err => {
+                        console.warn('Autoplay prevented:', err);
+                        button.textContent = '▶️';
+                        status.textContent = 'Click to play';
+                        alert('Please click to play the video. Autoplay is blocked by your browser.');
+                    });
+                } else if (!button.disabled) {
+                    video.pause();
+                    button.textContent = '▶️';
+                    status.textContent = 'Paused';
+                } else if (button.textContent === '🔁') {
+                    // Handle replay
+                    video.currentTime = 0;
+                    video.play().then(() => {
+                        button.textContent = '⏸️';
+                        status.textContent = 'Playing';
+                    });
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Enhanced lazy loading for images with fade-in
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+
+                    // Set initial state
+                    img.style.opacity = '0';
+                    img.style.transition = 'opacity 0.5s ease-in-out';
+
+                    // Handle successful load
+                    img.onload = () => {
+                        img.style.opacity = '1';
+                    };
+
+                    // Handle failed load
+                    img.onerror = () => {
+                        img.style.opacity = '0.3';
+                        img.alt = 'Image failed to load';
+                    };
+
+                    // If image is already cached
+                    if (img.complete && img.naturalHeight !== 0) {
+                        setTimeout(() => {
+                            img.style.opacity = '1';
+                        }, 100);
+                    }
+
+                    imageObserver.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '50px', // Start loading before image is visible
+            threshold: 0.01
+        });
+
+        document.querySelectorAll('img').forEach(img => {
+            // Skip already loaded images
+            if (!img.complete) {
+                imageObserver.observe(img);
+            } else if (img.naturalHeight === 0) {
+                // Image failed to load
+                img.alt = 'Image unavailable';
+                img.style.opacity = '0.5';
+            }
+        });
+
+        // Add performance metrics animation
+        document.querySelectorAll('.metric-value').forEach(metric => {
+            const finalValue = metric.textContent;
+            const isNumber = /^\d/.test(finalValue);
+
+            if (isNumber) {
+                metric.textContent = '0';
+                const target = parseInt(finalValue);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        metric.textContent = finalValue;
+                        clearInterval(timer);
+                    } else {
+                        metric.textContent = Math.floor(current);
+                    }
+                }, 30);
+            }
+        });
+
+        // Auto-pause videos when they scroll out of view
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target.querySelector('video');
+                const button = entry.target.querySelector('.play-pause');
+                const status = entry.target.querySelector('.video-status');
+
+                if (!entry.isIntersecting && !video.paused) {
+                    video.pause();
+                    button.textContent = '▶️';
+                    status.textContent = 'Paused (scrolled away)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+            videoObserver.observe(wrapper);
+        });
+
+        // Add link click tracking
+        document.querySelectorAll('.site-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Add visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
