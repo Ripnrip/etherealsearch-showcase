@@ -7,7 +7,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="V0ExplorerVideo"
         component={V0ShowcaseVideo}
-        durationInFrames={150}
+        durationInFrames={750}
         fps={30}
         width={1920}
         height={1080}
@@ -21,7 +21,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="V0EyeVideo"
         component={V0ShowcaseVideo}
-        durationInFrames={150}
+        durationInFrames={750}
         fps={30}
         width={1920}
         height={1080}
@@ -35,7 +35,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="V0InsightVideo"
         component={V0ShowcaseVideo}
-        durationInFrames={150}
+        durationInFrames={750}
         fps={30}
         width={1920}
         height={1080}
