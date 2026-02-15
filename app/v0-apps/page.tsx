@@ -29,8 +29,7 @@ const apps = [
     url: "https://etherealsearch-showcase.vercel.app",
     icon: "🔍",
     color: "from-blue-400 to-purple-400",
-    video: null,
-    screenshot: "/v0-showcase/01-hero.png"
+    video: "/v0-showcase/etherealsearch.mp4"
   }
 ];
 
@@ -60,22 +59,14 @@ export default function V0AppsPage() {
                 </div>
                 <p className="text-gray-300 mb-4">{app.description}</p>
                 <div className="aspect-video bg-black/20 rounded-lg overflow-hidden mb-4">
-                  {app.video ? (
-                    <video
-                      src={`https://etherealsearch-showcase.vercel.app${app.video}`}
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    />
-                  ) : (
-                    <img
-                      src={`https://etherealsearch-showcase.vercel.app${app.screenshot}`}
-                      alt={app.name}
-                      className="w-full h-full object-cover"
-                    />
-                  )}
+                  <video
+                    src={`https://etherealsearch-showcase.vercel.app${app.video}`}
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
                 </div>
                 <a
                   href={app.url}

@@ -46,6 +46,20 @@ export const RemotionRoot: React.FC = () => {
           gradient: 'from-violet-400 to-pink-400',
         }}
       />
+      <Composition
+        id="EtherealSearchVideo"
+        component={V0ShowcaseVideo}
+        durationInFrames={750}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          appName: 'EtherealSearch',
+          appUrl: 'https://etherealsearch-showcase.vercel.app',
+          screenshotPath: 'https://etherealsearch-showcase.vercel.app/v0-showcase/01-hero.png',
+          gradient: 'from-blue-400 to-purple-400',
+        }}
+      />
     </>
   );
 };

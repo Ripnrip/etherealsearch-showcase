@@ -52,6 +52,12 @@ export const V0ShowcaseVideo = ({
       'Query optimization',
       'Data visualization',
     ],
+    'EtherealSearch': [
+      'Agentic RAG search',
+      'Vision analysis',
+      'Document processing',
+      'Engineering intelligence',
+    ],
   };
 
   const appFeatures = features[appName] || features['v0 Explorer'];
@@ -244,10 +250,15 @@ const FeaturesScene = ({ appName, features, bgColor, frame, fps }: any) => {
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 80,
       }}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 40, maxWidth: 1000 }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 40,
+        alignItems: 'center',
+        width: '100%',
+      }}>
         <h2
           style={{
             fontSize: 60,
@@ -255,46 +266,56 @@ const FeaturesScene = ({ appName, features, bgColor, frame, fps }: any) => {
             color: 'white',
             margin: 0,
             opacity: titleOpacity,
+            textAlign: 'center',
           }}
         >
           Key Features
         </h2>
-        {features.map((feature: string, i: number) => {
-          const featureFrame = frame - i * 20;
-          const featureOpacity = interpolate(featureFrame, [0, 20], [0, 1], { extrapolateLeft: 'clamp' });
-          const featureX = interpolate(featureFrame, [0, 20], [-100, 0], { extrapolateLeft: 'clamp' });
-          const checkScale = spring({ frame: featureFrame, fps, config: { damping: 10, stiffness: 200 } });
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 35,
+          alignItems: 'flex-start',
+          paddingLeft: 200,
+        }}>
+          {features.map((feature: string, i: number) => {
+            const featureFrame = frame - i * 20;
+            const featureOpacity = interpolate(featureFrame, [0, 20], [0, 1], { extrapolateLeft: 'clamp' });
+            const featureX = interpolate(featureFrame, [0, 20], [-50, 0], { extrapolateLeft: 'clamp' });
+            const checkScale = spring({ frame: featureFrame, fps, config: { damping: 10, stiffness: 200 } });
 
-          return (
-            <div
-              key={i}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 30,
-                opacity: featureOpacity,
-                transform: `translateX(${featureX}px)`,
-              }}
-            >
+            return (
               <div
+                key={i}
                 style={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: 25,
-                  background: bgColor,
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: 24,
-                  transform: `scale(${checkScale})`,
+                  gap: 25,
+                  opacity: featureOpacity,
+                  transform: `translateX(${featureX}px)`,
                 }}
               >
-                ✓
+                <div
+                  style={{
+                    width: 45,
+                    height: 45,
+                    borderRadius: 22,
+                    background: bgColor,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: 22,
+                    transform: `scale(${checkScale})`,
+                    flexShrink: 0,
+                  }}
+                >
+                  ✓
+                </div>
+                <span style={{ fontSize: 34, color: 'white', whiteSpace: 'nowrap' }}>{feature}</span>
               </div>
-              <span style={{ fontSize: 36, color: 'white' }}>{feature}</span>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </AbsoluteFill>
   );
