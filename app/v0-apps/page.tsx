@@ -5,7 +5,7 @@ const apps = [
     url: "https://v0-ethereal-explorer.vercel.app",
     icon: "🌌",
     color: "from-emerald-400 to-cyan-400",
-    screenshot: "/v0-showcase/v0-explorer-fresh.png"
+    video: "/v0-showcase/v0-explorer.mp4"
   },
   {
     name: "v0 Eye",
@@ -13,7 +13,7 @@ const apps = [
     url: "https://v0-ethereal-eye.vercel.app",
     icon: "👁️",
     color: "from-yellow-400 to-red-400",
-    screenshot: "/v0-showcase/v0-eye-fresh.png"
+    video: "/v0-showcase/v0-eye.mp4"
   },
   {
     name: "v0 Insight",
@@ -21,7 +21,7 @@ const apps = [
     url: "https://v0-ethereal-insight.vercel.app",
     icon: "📊",
     color: "from-violet-400 to-pink-400",
-    screenshot: "/v0-showcase/v0-insight-fresh.png"
+    video: "/v0-showcase/v0-insight.mp4"
   },
   {
     name: "EtherealSearch",
@@ -29,6 +29,7 @@ const apps = [
     url: "https://etherealsearch-showcase.vercel.app",
     icon: "🔍",
     color: "from-blue-400 to-purple-400",
+    video: null,
     screenshot: "/v0-showcase/01-hero.png"
   }
 ];
@@ -59,11 +60,22 @@ export default function V0AppsPage() {
                 </div>
                 <p className="text-gray-300 mb-4">{app.description}</p>
                 <div className="aspect-video bg-black/20 rounded-lg overflow-hidden mb-4">
-                  <img
-                    src={`https://etherealsearch-showcase.vercel.app${app.screenshot}`}
-                    alt={app.name}
-                    className="w-full h-full object-cover"
-                  />
+                  {app.video ? (
+                    <video
+                      src={`https://etherealsearch-showcase.vercel.app${app.video}`}
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  ) : (
+                    <img
+                      src={`https://etherealsearch-showcase.vercel.app${app.screenshot}`}
+                      alt={app.name}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
                 <a
                   href={app.url}

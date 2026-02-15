@@ -6,15 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "remotion:studio": "remotion studio remotion/Root.tsx",
+    "remotion:render": "remotion render remotion/Root.tsx"
   },
   "dependencies": {
+    "@remotion/cli": "4.0.422",
+    "@remotion/mcp": "^4.0.422",
+    "@remotion/renderer": "4.0.422",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.2.10",
+    "lucide-react": "^0.378.0",
     "next": "14.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "framer-motion": "^11.2.10",
-    "lucide-react": "^0.378.0",
-    "clsx": "^2.1.1"
+    "remotion": "4.0.422",
+    "zod": "3.22.3"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
